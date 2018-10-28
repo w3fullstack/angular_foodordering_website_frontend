@@ -1,0 +1,1 @@
+{"version":3,"file":"placement.helper.ngfactory.js","sourceRoot":"","sources":["../../../../../../.ng_build/theme/components/popover/helpers/placement.helper.ngfactory.ts"],"names":[],"mappings":"","sourcesContent":["import * as i0 from '@angular/core';\ni0.ComponentFactory;\n"]}
