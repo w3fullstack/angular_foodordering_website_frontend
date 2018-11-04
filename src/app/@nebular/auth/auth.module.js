@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NbLayoutModule, NbCardModule, NbCheckboxModule } from '@nebular/theme';
+import { NbLayoutModule, NbCardModule, NbCheckboxModule } from '../theme';
 import { NbAuthService } from './services/auth.service';
 import { NbDummyAuthProvider } from './providers/dummy-auth.provider';
 import { NbEmailPassAuthProvider } from './providers/email-pass-auth.provider';
@@ -20,6 +20,10 @@ import { NbRequestPasswordComponent } from './components/request-password/reques
 import { NbResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { routes } from './auth.routes';
 import { deepExtend } from './helpers';
+import { ApiService } from '../../services/api.service';
+import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
+
 export function nbAuthServiceFactory(config, tokenService, injector) {
     var providers = config.providers || {};
     for (var key in providers) {
@@ -55,6 +59,8 @@ var NbAuthModule = /** @class */ (function () {
                 NbTokenService,
                 NbDummyAuthProvider,
                 NbEmailPassAuthProvider,
+                ApiService,
+                CookieService,
             ],
         };
     };

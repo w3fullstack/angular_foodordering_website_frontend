@@ -2,8 +2,8 @@
 @import 'themes';
 
 // framework component themes (styles tied to theme variables)
-@import '~@nebular/theme/styles/globals';
-@import '~@nebular/auth/styles/all';
+@import '../../@nebular/theme/styles/globals';
+@import '../../@nebular/auth/styles/all';
 
 // loading progress bar theme
 @import './pace.theme';
@@ -26,3 +26,32 @@
   }
   @include bootstrap-rtl();
 };
+
+
+.toast-container .toast {
+  width: 100% !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  background-image: none !important;
+  text-align: center;
+  font-family: bungee_regularregular, sans-serif;
+  font-size: 20px;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+  padding: 16px !important;
+  position: fixed;
+  top: 0px;
+
+  &.toast-success {
+    background: #42DA79;
+  }
+
+  &.toast-error {
+    background: rgba(255, 82, 87, 1);
+  }
+
+  .toast-title {
+    display: none;
+  }
+}

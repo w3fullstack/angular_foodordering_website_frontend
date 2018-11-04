@@ -7,10 +7,11 @@ import {
   NbRegisterComponent,
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
-} from '@nebular/auth';
+} from './@nebular/auth';
 
 const routes: Routes = [
   { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule' },
+  { path: 'frontdesk', loadChildren: 'app/front-desk/front-desk.module#FrontDeskModule' },
   {
     path: 'auth',
     component: NbAuthComponent,

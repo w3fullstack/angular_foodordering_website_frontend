@@ -1,3 +1,67 @@
-<p>
-  settings works!
-</p>
+<nb-card>
+  <nb-card-header>
+    Bank Information
+  </nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="bankForm" (ngSubmit)="submitBankInfo()">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="inputAccount">Account #</label>
+            <input type="text" formControlName="account" class="form-control" [ngClass]="{'form-control-danger': bankForm.controls.account.invalid && (bankForm.controls.account.dirty || bankForm.controls.account.touched)}" id="inputAccount" placeholder="12345678">
+          </div>
+        </div>
+        <!-- Tax -->
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="inputRoutingNumber">Routing Number</label>
+            <input type="text" formControlName="routingNumber" class="form-control" [ngClass]="{'form-control-danger': bankForm.controls.routingNumber.invalid && (bankForm.controls.routingNumber.dirty || bankForm.controls.routingNumber.touched)}" id="inputRoutingNumber" placeholder="0000000">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-success btn-semi-round">Submit</button>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+    <nb-card-header>
+      Preparation Time
+    </nb-card-header>
+  
+    <nb-card-body>
+      <form [formGroup]="prepTimeForm" (ngSubmit)="submitPrepTimeInfo()">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="number" formControlName="prepTime" class="form-control" [ngClass]="{'form-control-danger': prepTimeForm.controls.prepTime.invalid && (prepTimeForm.controls.prepTime.dirty || prepTimeForm.controls.prepTime.touched)}" id="inputPreparationTime" placeholder="0" value="currentUser.restaurant.prepare_time">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-success btn-semi-round">Submit</button>
+          </div>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+
+  <nb-card>
+      <nb-card-header>
+        Restaurant Status
+      </nb-card-header>
+    
+      <nb-card-body>
+          <ngx-switcher
+          [firstValue]="true"
+          [secondValue]="false"
+          [firstValueLabel]="'Available'"
+          [secondValueLabel]="'Not available'"
+          [value]="restaurantStatus()"
+          (valueChange)="toggleRestaurantStatus($event)"
+        >
+        </ngx-switcher>
+      </nb-card-body>
+    </nb-card>

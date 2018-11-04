@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <span>{{ title }}</span>
+  <button class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="onClickOk()">
+  <div class="modal-body">
+    <div class="form-group">
+      <input type="text" formControlName="newName" class="form-control" [ngClass]="{'form-control-danger': editForm.controls.newName.invalid && (editForm.controls.newName.dirty || editForm.controls.newName.touched)}" placeholder="Please fill this">
+    </div>
+    <!-- Thumbnail Image -->
+    <div *ngIf="hasFileInput" class="form-group">
+      <label for="thumbnail">Thumbnail</label>
+      <i *ngIf="imageUploaded" class="fa fa-check-circle" style="margin-left: 20px;"></i>
+      <!-- <label *ngIf="!imageUploaded && !imageUploadFailed" style="margin-left: 20px;">Uploading ({{ uploadPercent }}%)</label> -->
+      <label *ngIf="imageUploadFailed" style="margin-left: 20px;color:red;">Upload failed!</label>
+      <input type="file" formControlName="newThumbnail" class="form-control" id="thumbnail" placeholder="Thumbnail" (change)="onChange($event)">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-md btn-success">Ok</button>
+    <button class="btn btn-md btn-danger" (click)="closeModal()">Cancel</button>
+  </div>
+</form>

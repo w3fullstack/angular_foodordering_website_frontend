@@ -16,6 +16,10 @@
     transition: max-height 0.3s ease-in;
   }
 
+  
+  .menu_item {
+    cursor: pointer;
+  }
   .menu-item a {
     display: flex;
     color: inherit;

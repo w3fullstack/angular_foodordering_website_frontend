@@ -1,0 +1,13 @@
+<div *ngFor="let item of items" class="custom-menu-layout">
+  <div class="row">
+    <img *ngIf="item.thumbnail != '' && item.thumbnail != null && item.thumbnail != undefined" class="thumbnail" src = "{{ item.thumbnail }}" (click)="onClickSelect(item)">
+  </div>
+  <div class="custom-menu-item" [ngClass]="{ active: item.is_selected }">
+    <div class="icon"><i class="{{ item.icon }}" (click)="onClickSelect(item)"></i></div>
+    <span (click)="onClickSelect(item)">{{ item.title }}</span>
+    <div class="action">
+      <div *ngIf="edit_enabled" class="icon"><i class="nb-edit" (click)="onClickEdit(item)"></i></div>
+      <div class="icon"><i class="nb-trash" (click)="onClickDelete(item)"></i></div>
+    </div>
+  </div>
+</div>

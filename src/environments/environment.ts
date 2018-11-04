@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // SERVER_URL : 'http://192.168.0.134:3000'
+  SERVER_URL : 'https://orders.paranoidfan.com:3000'
 };

@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <span>Add Item</span>
+  <button class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="item-detail">
+  <form [formGroup]="itemDetailForm" (ngSubmit)="addItem()">
+      <div class="modal-body">
+      <!-- Item Name -->
+      <div class="form-group">
+        <input type="text" formControlName="itemName" class="form-control" [ngClass]="{'form-control-danger': itemDetailForm.controls.itemName.invalid && (itemDetailForm.controls.itemName.dirty || itemDetailForm.controls.itemName.touched)}" id="exampleInputEmail1" placeholder="Item name">
+      </div>
+      <!-- Description -->
+      <div class="form-group">
+        <textarea rows="2" formControlName="itemDescription" placeholder="Description ingredients, preparation style, etc" id="inputDescription" class="form-control"
+        [ngClass]="{'form-control-danger': itemDetailForm.controls.itemDescription.invalid && (itemDetailForm.controls.itemDescription.dirty || itemDetailForm.controls.itemDescription.touched)}"></textarea>
+      </div>
+
+      <div class="row">
+        <!-- Price -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="inputPrice">Price ($)</label>
+            <input type="number" formControlName="itemPrice" class="form-control" [ngClass]="{'form-control-danger': itemDetailForm.controls.itemPrice.invalid && (itemDetailForm.controls.itemPrice.dirty || itemDetailForm.controls.itemPrice.touched)}" id="inputPrice" placeholder="0.00">
+          </div>
+        </div>
+        <!-- Tax -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="inputTax">Tax (%)</label>
+            <input type="number" formControlName="itemTax" class="form-control" [ngClass]="{'form-control-danger': itemDetailForm.controls.itemTax.invalid && (itemDetailForm.controls.itemTax.dirty || itemDetailForm.controls.itemTax.touched)}" id="inputTax" placeholder="0.00">
+          </div>
+        </div>
+        <!-- Thumbnail Image -->
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="thumbnail">Thumbnail</label>
+            <i *ngIf="imageUploaded" class="fa fa-check-circle" style="margin-left: 20px;"></i>
+            <!-- <label *ngIf="tempThumbnail && !imageUploaded && !imageUploadFailed" style="margin-left: 20px;">Uploading ({{ uploadPercent }}%)</label> -->
+            <label *ngIf="imageUploadFailed" style="margin-left: 20px;color:red;">Upload failed!</label>
+            <input type="file" formControlName="thumbnail" class="form-control" id="thumbnail" placeholder="Thumbnail" (change)="onChange($event)">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-md btn-success">Add</button>
+        <button class="btn btn-md btn-danger" (click)="closeModal()">Cancel</button>
+    </div>
+  </form>
+</div>

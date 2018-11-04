@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <span>{{ title }}</span>
+  <button class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  {{ description }}
+</div>
+<div class="modal-footer">
+  <button class="btn btn-md btn-success" (click)="onClickOk()">Ok</button>
+  <button class="btn btn-md btn-danger" (click)="closeModal()">Cancel</button>
+</div>

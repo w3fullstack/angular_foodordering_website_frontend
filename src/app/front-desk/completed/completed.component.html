@@ -1,0 +1,58 @@
+<nb-card>
+    <nb-card-header>
+      Pending Orders
+    </nb-card-header>
+
+    <nb-card-body>
+      <mat-paginator #paginator
+        [length]="totalRows$ | async"
+        [pageIndex]="0"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+      ></mat-paginator>
+          
+      <mat-accordion displayMode="flat" multi class="mat-table">
+        <section matSort class="mat-elevation-z2 mat-header-row">
+          <span class="mat-header-cell" mat-sort-header="status">Status</span>
+          <span class="mat-header-cell" mat-sort-header="id">Order ID</span>
+          <span class="mat-header-cell" mat-sort-header="customer">Customer</span>
+          <span class="mat-header-cell" mat-sort-header="paid">Paid</span>
+          <span class="mat-header-cell" mat-sort-header="refund">Refund</span>
+        </section>
+      
+        <mat-expansion-panel *ngFor="let order of displayedRows$ | async">
+          <mat-expansion-panel-header class="mat-row">
+            <span class="mat-cell">
+                  <span *ngIf="order.status==2">Completed<br></span>
+                  <span *ngIf="order.status==3">Refunded<br></span>
+                  <span style="font-size: 0.7rem;">{{ order.time }}</span>
+            </span>
+            <span class="mat-cell">{{order.id}}</span>
+            <span class="mat-cell">{{order.customer_name}}</span>
+            <span class="mat-cell">${{order.paid}}</span>
+            <span class="mat-cell"><button-refund *ngIf="order.status==2" [order_id]="order.id"></button-refund></span>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-lg-6 col-md-12"> 
+              <table *ngFor="let item of order.items" style="width: 100%;">
+                <thead>
+                    <tr class="row">
+                      <th class="col-1">{{ item.amounts }}</th>
+                      <th class="col-7">{{ item.name }}</th>
+                      <th class="col-4">${{ item.price }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr class="row">
+                    <td class="col-1"></td>
+                    <td class="col-7">{{ item.description }}</td>
+                    <td class="col-4"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </nb-card-body>
+  </nb-card>

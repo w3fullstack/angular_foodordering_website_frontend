@@ -58,8 +58,10 @@ export { NbMenuItem };
  * Menu Service. Allows you to listen to menu events, or to interact with a menu.
  */
 var NbMenuService = /** @class */ (function () {
+
     function NbMenuService() {
     }
+
     /**
      * Add items to the end of the menu items list
      * @param {List<NbMenuItem>} items

@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <span>Order Detail</span>
+  <button class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <mat-paginator #paginator
+    [length]="totalRows$ | async"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+  ></mat-paginator>
+  
+    
+  <mat-accordion displayMode="flat" multi class="mat-table">
+    <section matSort class="mat-elevation-z2 mat-header-row">
+      <span class="mat-header-cell" mat-sort-header="id">ID</span>
+      <span class="mat-header-cell" mat-sort-header="name">Name</span>
+      <span class="mat-header-cell" mat-sort-header="price">Price</span>
+      <span class="mat-header-cell" mat-sort-header="tax">Tax</span>
+    </section>
+  
+    <mat-expansion-panel *ngFor="let item of displayedRows$ | async">
+      <mat-expansion-panel-header class="mat-row">
+        <span class="mat-cell">{{item.id}}</span>
+        <span class="mat-cell">{{item.name}}</span>
+        <span class="mat-cell">{{item.price}}</span>
+        <span class="mat-cell">{{item.tax}}</span>
+      </mat-expansion-panel-header>
+      {{item.description}}
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+<div class="modal-footer">
+  <button *ngIf="order.status == 0" class="btn btn-md btn-primary btn-block" (click)="onClickReady()">READY FOR PICKUP</button>
+  <button *ngIf="order.status == 1" class="btn btn-md btn-success btn-block" (click)="onClickComplete()">COMPLETE ORDER</button>
+</div>
